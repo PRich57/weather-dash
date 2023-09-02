@@ -1,9 +1,11 @@
 // VARIABLE DECLARATIONS
-var cityName = prompt("Which city would you like to view?");
+// var cityName = prompt("Which city would you like to view?");
+// var cityName = document.getElementById("city-name").value;
 var fetchBtn = document.getElementById('fetch-button');
 var mainSection = document.querySelector("main");
+var history = document.querySelector(".search-history");
 
-var currentWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=' + cityName + '&appid=9217e4926ac9dcff03755cdfef766696';
+var currentWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=9217e4926ac9dcff03755cdfef766696';
 
 var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=9217e4926ac9dcff03755cdfef766696'
 
@@ -35,7 +37,7 @@ function getApi(requestUrlArg) {
 }
 getApi(currentWeatherUrl);
 
-getApi(forecastUrl);
+// getApi(forecastUrl);
 
 
 
@@ -43,7 +45,7 @@ getApi(forecastUrl);
 
 
 // EVENT LISTENERS
-
+// fetchBtn.on("click", )
 
 
 

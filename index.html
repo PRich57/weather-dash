@@ -3,14 +3,35 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Weather Dashboard</title>
 </head>
 <body>
   <header>
-
+    <h1>Weather Dashboard</h1>
   </header>
   <main>
-    <button id="fetch-button">See Weather</button>
+    <!-- Search section on the left of the screen -->
+    <aside class="search">
+      <h2>Search for a City:</h2>
+      <input type="text" placeholder="Enter city name" id="city-name">
+      <button id="fetch-button">See Weather</button>
+      <hr>
+      <!-- Empty div to add search history from local storage -->
+      <div class="search-history"></div>
+    </aside>
+
+    <!-- Current weather and forecast display cards -->
+    <div class="card">
+      <div class="current-weather">
+        <!-- Use dayjs to add date after city name -->
+        <h2 class="city">Denver</h2>
+        <h3 class="temp">Temp: </h3>
+        <div class="details">
+          
+        </div>
+      </div>
+    </div>
+
   </main>
   <script src="./assets/js/script.js"></script>
 </body>
