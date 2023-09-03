@@ -21,7 +21,7 @@
           <div class="card-header">
             <h2>Search for a City:</h2>
           </div>
-          <input type="text" id="city-name" placeholder="Enter city name" />
+          <input type="text" id="userInput" placeholder="Enter city name">
           <button id="fetch-button">See Weather</button>
           <hr />
         </div>
@@ -35,12 +35,12 @@
           id="current-weather"
         >
           <div class="card-header">
-            <h2 class="city">Denver</h2>
+            <h2 class="city"></h2>
           </div>
           <ul class="list-group list-group-flush">
-            <h4 class="list-group-item temp">75°F</h4>
-            <li class="list-group-item wind">Wind Speed:</li>
-            <li class="list-group-item humidity">Humidity:</li>
+            <h4 class="list-group-item temp"></h4>
+            <h4 class="list-group-item wind"></h4>
+            <h4 class="list-group-item humidity"></h4>
           </ul>
         </div>
         <section class="col-12 text-start forecast">
@@ -51,9 +51,9 @@
                 <h4 class="date"></h4>
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item temp">Temp:</li>
-                <li class="list-group-item wind">Wind Speed:</li>
-                <li class="list-group-item humidity">Humidity:</li>
+                <li class="list-group-item fTemp">Temp:</li>
+                <li class="list-group-item fWind">Wind Speed:</li>
+                <li class="list-group-item fHumidity">Humidity:</li>
               </ul>
             </div>
             <div class="card" style="width: 16rem; height: 16rem" id="2">
@@ -101,12 +101,12 @@
       </section>
     </main>
     <footer></footer>
-    <script src="./assets/js/script.js"></script>
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script
-      src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
-      integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
-      crossorigin="anonymous"
+    src="https://cdn.jsdelivr.net/npm/dayjs@1.11.3/dayjs.min.js"
+    integrity="sha256-iu/zLUB+QgISXBLCW/mcDi/rnf4m4uEDO0wauy76x7U="
+    crossorigin="anonymous"
     ></script>
+    <script src="./assets/js/script.js"></script>
   </body>
 </html>
