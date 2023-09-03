@@ -55,10 +55,25 @@ main {
   background: var(--header2);
 }
 
+.city {
+  padding-top: 0;
+}
+
 /* Position h2 elements */
 h2 {
   padding-top: 1.5rem;
   text-align: center;
+  text-shadow: var(--outline);
+}
+
+img {
+  width: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+.date {
+  padding-top: .5rem;
   text-shadow: var(--outline);
 }
 
@@ -70,15 +85,24 @@ input, button {
   border-radius: 5px;
 }
 
+hr {
+  border: 1px solid black;
+}
+
 /* Add class style for the search history pulled from local storage */
-.search-history {
+.search-history, #history {
   color: gray;
+  padding-top: 0rem;
 }
 
 /* Position h3 elements */
 h3 {
   text-align: center;
   padding-top: 3rem;
+}
+
+h4 {
+  text-align: center;
 }
 
 /* Add media queries for mobile responsiveness due to minor tweaks to bootstrap */
