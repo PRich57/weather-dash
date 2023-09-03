@@ -19,22 +19,20 @@
 
 
 // // FUNCTIONS
-// function getApi(requestUrlArg) {
-//   fetch(requestUrlArg)
-//     .then(function (response) {
-//       // console.log(response);
-//       return response.json();
-//   })
-//   .then(function (data) {
-//     console.log(data);
-//     var city = document.createElement("h2");
-//     var weather = document.createElement("p");
-//     city.textContent = data.name;
-//     weather.textContent = data.weather[0].description;
-//     mainSection.appendChild(city);
-//     mainSection.appendChild(weather);
-//   })
-// }
+function getApi(requestUrlArg) {
+  fetch(requestUrlArg)
+    .then(function (response) {
+      // console.log(response);
+      return response.json();
+  })
+  .then(function (data) {
+    console.log(data);
+    var city = document.createElement("h2");
+    var weather = document.createElement("p");
+    city.textContent = data.name;
+    weather.textContent = data.weather[0].description;
+  })
+}
 // getApi(currentWeatherUrl);
 
 // getApi(forecastUrl);

@@ -2,6 +2,7 @@
 :root {
   --header1: linear-gradient(30deg, rgb(30, 30, 252), rgb(110, 231, 128));
   --header2: linear-gradient(180deg, rgb(5, 5, 123), rgb(3, 85, 168));
+  --outline: -1.3px -1.3px 0 #000, 1.3px -1.3px 0 #000, -1.3px 1.3px 0 #000, 1.3px 1.3px 0 #000;
 }
 
 /* Universal selector - set box sizing */
@@ -28,6 +29,7 @@ header {
   padding: 1.5rem;
   margin-bottom: 1.5rem;
   border-bottom: .2px solid white;
+  text-shadow: var(--outline);
 }
 
 /* Make main flex for styling */
@@ -56,12 +58,15 @@ main {
 h2 {
   padding-top: 1.5rem;
   text-align: center;
+  text-shadow: var(--outline);
 }
 
 /* Position the input field and button */
 input, button {
   margin: .5rem;
+  margin-left: 1rem;
   width: 90%;
+  border-radius: 5px;
 }
 
 /* Add class style for the search history pulled from local storage */
