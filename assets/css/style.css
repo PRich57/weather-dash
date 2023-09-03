@@ -1,5 +1,6 @@
 :root {
-  --headers: linear-gradient(20deg, rgb(30, 30, 252), rgb(104, 216, 147));
+  --header1: linear-gradient(20deg, rgb(30, 30, 252), rgb(104, 216, 147));
+  --header2: linear-gradient(100deg, rgb(0, 0, 158), rgb(51, 111, 207));
 }
 
 * {
@@ -7,7 +8,7 @@
 }
 
 body {
-  background: rgb(196, 196, 196);
+  background: rgb(54, 54, 54);
   background-size: cover;
   height: 100vh;
   font-size: 62.5%;
@@ -15,7 +16,7 @@ body {
 }
 
 header {
-  background: var(--headers);
+  background: var(--header1);
   text-align: center;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
@@ -23,6 +24,7 @@ header {
 
 main {
   display: flex;
+  justify-content: center;
   padding: 2rem;
   font-size: 1rem;
 }
@@ -38,7 +40,7 @@ main {
 }
 
 .card-header {
-  background-color: rgb(65, 62, 62);
+  background: var(--header2);
 
 }
 
@@ -59,7 +61,6 @@ input, button {
 h3 {
   text-align: center;
   padding-top: 3rem;
-  color: black;
 }
 
 @media screen and (max-width: 1000px) {
