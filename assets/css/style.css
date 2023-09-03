@@ -1,6 +1,6 @@
 :root {
-  --header1: linear-gradient(20deg, rgb(30, 30, 252), rgb(104, 216, 147));
-  --header2: linear-gradient(100deg, rgb(0, 0, 158), rgb(51, 111, 207));
+  --header1: linear-gradient(30deg, rgb(30, 30, 252), rgb(110, 231, 128));
+  --header2: linear-gradient(180deg, rgb(5, 5, 123), rgb(3, 85, 168));
 }
 
 * {
@@ -8,6 +8,9 @@
 }
 
 body {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   background: rgb(54, 54, 54);
   background-size: cover;
   height: 100vh;
@@ -20,19 +23,19 @@ header {
   text-align: center;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
+  border-bottom: .2px solid white;
 }
 
 main {
   display: flex;
   justify-content: center;
-  padding: 2rem;
+  align-content: center;
+  margin-top: 2rem;
   font-size: 1rem;
 }
 
 .card {
   margin: .1rem;
-  border: 2px solid black;
-  border-radius: 6px;
 }
 
 .row {
