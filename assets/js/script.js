@@ -5,11 +5,11 @@
 // var mainSection = document.querySelector("main");
 // var history = document.querySelector(".search-history");
 
-// var currentWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=9217e4926ac9dcff03755cdfef766696';
+var currentWeatherUrl = 'https://api.openweathermap.org/data/2.5/weather?q=Denver&appid=9217e4926ac9dcff03755cdfef766696';
 
-// var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=9217e4926ac9dcff03755cdfef766696'
+var forecastUrl = 'https://api.openweathermap.org/data/2.5/forecast?q=denver&appid=9217e4926ac9dcff03755cdfef766696'
 
-
+var apiKey = "9217e4926ac9dcff03755cdfef766696"
 
 
 
@@ -27,10 +27,6 @@ function getApi(requestUrlArg) {
   })
   .then(function (data) {
     console.log(data);
-    var city = document.createElement("h2");
-    var weather = document.createElement("p");
-    city.textContent = data.name;
-    weather.textContent = data.weather[0].description;
   })
 }
 // getApi(currentWeatherUrl);

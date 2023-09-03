@@ -15,11 +15,12 @@ body {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  background: rgb(54, 54, 54);
+  background: rgb(0, 0, 0);
   background-size: cover;
   height: 100vh;
   font-size: 62.5%;
   color: white;
+  opacity: 90%;
 }
 
 /* Give header variable color and style content */
