@@ -50,6 +50,7 @@ $(function () {
           currentWind.text("");
           currentHumidity.text("");
           icon.attr('src', './assets/images/unknown.png');
+          $('input').val("");
           return;
         }
         // Update text node of the city element
@@ -78,7 +79,42 @@ $(function () {
       })
       // Use json response in next then function
       .then(function (data) {
+        // Check the result of splitting the dt_txt value
+        console.log(data.list[0].dt_txt.split(' '));
         console.log(data);
+        // For each element in the list array
+        // data.list.forEach(element => {
+        //   // Declare a variable to split the dt_txt into
+        //   var words = element.dt_txt.split(' ');
+        //   // Check words in console to sift through output
+        //   console.log(words);
+
+        // Get each full day starting with '00:00:00'
+        var days = [data.list.slice(0, 8), data.list.slice(8, 16), data.list.slice(16, 24), data.list.slice(24, 32), data.list.slice(32)]
+        console.log(days);
+        
+        for (var i = 0; i < 5; i++) {
+          var sumT = 0;
+          var avgT = 0;
+          var sumW = 0;
+          var avgW = 0;
+          var sumH = 0;
+          var avgH = 0;
+          var segments = days[i];
+          segments.forEach(element => {
+            sumT += element.main.temp;
+          });
+          avgT = Math.round(sumT/days[i].length);
+          console.log(avgT);
+        };
+          
+          
+        //   for (var i = 0; i < 5; i++) {
+            
+        //   }
+
+        // });
+        // // var tomorrow = data.list[0]
         // for each card in the cards array
         for (var i = 0; i < cards.length; i++) {
           // Update the date header for cards[i] in cards array
