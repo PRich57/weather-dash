@@ -15,8 +15,6 @@ $(function () {
   var currentHumidity = $(".humidity");
   // Declare search history variable
   var historyUl = $("#historyUl");
-  // Declare a variable to set a max length of displayed search history
-  var maxHistory = 8;
   // Declare API Key variable
   var apiKey = "&appid=9217e4926ac9dcff03755cdfef766696";
   // Declare variable for current weather url
@@ -108,43 +106,37 @@ $(function () {
     // Clear the input field
     $('input').val("");
 
+    // Clear displayed search history to prevent doubling
+    historyUl.empty();
+
     // Call function to update the search history list
     listHistory();
   }
 
   // Create function to list the search history for the user to see and use
   function listHistory() {
-    // Use the history reference variable and clear any existing list items
-
-      
+    // Declare a variable to set a max length of displayed search history
+    var maxHistory = 9;
+    
     // Get items from local storage
-    var listHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    console.log(listHistory);
+    var completeHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    console.log(completeHistory);
 
-    // Create buttons for each stored item
-    for (var i = 0; i < maxHistory; i++) {
-      historyUl.text("");
+    // Use slice method first to store shallow copy of original array then reverse the copy
+    var reversedHistory = completeHistory.slice().reverse();
+
+    // Limit the reversed array copy to the 8 most recent elements
+    var listHistory = reversedHistory.slice(0, 8);
+    
+    // Create buttons for each stored item starting from most recent entry
+    for (var i = 0; i < listHistory.length; i++) {
       var historyLi = $('<li>');
       historyUl.append(historyLi);
       var historyBtn = $('<button>');
       historyBtn.text(listHistory[i]);
-      console.log(listHistory[i]);
       historyLi.append(historyBtn);
-      console.log(historyBtn);
-
     }
-  }  
-    
-    
-    
-    // for (const searchItem in listHistory) {
-    //   var historyBtn = $("<button>");
-    //   historyBtn.textContent = searchItem;
-    //   history.append(historyBtn);
-
-  
-
-  // NEED TO MAKE INPUT TO GETCURRRENT AND GETFORECAST FUNCTIONS BE THE CITY NAME ONLY TO MAKE THE HISTORY BUTTONS WORK CORRECTLY
+  }
 
   // EVENT LISTENERS
   fetchBtn.on("click", function (event) {
