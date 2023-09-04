@@ -114,13 +114,9 @@ $(function () {
   }
 
   // Create function to list the search history for the user to see and use
-  function listHistory() {
-    // Declare a variable to set a max length of displayed search history
-    var maxHistory = 9;
-    
+  function listHistory() {    
     // Get items from local storage
     var completeHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
-    console.log(completeHistory);
 
     // Use slice method first to store shallow copy of original array then reverse the copy
     var reversedHistory = completeHistory.slice().reverse();
@@ -134,30 +130,51 @@ $(function () {
       historyUl.append(historyLi);
       var historyBtn = $('<button>');
       historyBtn.text(listHistory[i]);
+      historyBtn.attr('class', 'historyBtn');
       historyLi.append(historyBtn);
     }
   }
 
   // EVENT LISTENERS
+
+  // Listen for click on fetchBtn
   fetchBtn.on("click", function (event) {
+    // Declare variable to hold user input
     var userCity = $("input").val();
-    console.log(userCity);
+    // Validation
     if (userCity === "") {
       alert("You must enter a city name");
       return;
     }
 
+    // Declare variable for input to getCurrent() with user's chosen city 
     var userCurrent = currentUrl + userCity + apiKey;
+    // Declare variable for input to getForecast() with user's chosen city
     var userForecast = forecastUrl + userCity + apiKey;
 
+    // Call functions to get current weather and 5 day forecast
     getCurrent(userCurrent);
     getForecast(userForecast);
+    
+    // Call searchHistory() to store the most recent search
     searchHistory();
   });
 
-  // historyBtn.on("click", function (event) {
-  //   getCurrent()
-  // })
+  // Listen for click on search history buttons
+  historyUl.on('click', function (event) {
+    // Declare variable to store the text content of the button clicked
+    var searchAgain = event.target.textContent;
+    // Declare variable for search history input to getCurrent function
+    var currentSearchHistory = currentUrl + searchAgain + apiKey;
+    // Declare variable for search history input to getForecast function
+    var forecastSearchHistory = forecastUrl + searchAgain + apiKey;
+
+    // Call the getCurrent and getForecast functions with search history input
+    getCurrent(currentSearchHistory);
+    getForecast(forecastSearchHistory);
+    
+    searchHistory();
+  })
 
   // FUNCTION CALLS FOR FIRST LOAD CONTENT
   getCurrent(currentUrl + "Denver" + apiKey);
