@@ -55,10 +55,6 @@ main {
   background: var(--header2);
 }
 
-.city {
-  padding-top: 0;
-}
-
 /* Position h2 elements */
 h2 {
   padding-top: 1.5rem;
@@ -66,33 +62,17 @@ h2 {
   text-shadow: var(--outline);
 }
 
-img {
-  width: 50px;
-  margin: 0;
-  padding: 0;
-}
-
-.date {
-  padding-top: .5rem;
-  text-shadow: var(--outline);
-}
-
 /* Position the input field and button */
 input, button {
   margin: .5rem;
-  margin-left: 1rem;
+  margin-left: 1.5rem;
   width: 90%;
   border-radius: 5px;
 }
 
+/* Make hr visible */
 hr {
   border: 1px solid black;
-}
-
-/* Add class style for the search history pulled from local storage */
-.search-history, #history {
-  color: gray;
-  padding-top: 0rem;
 }
 
 /* Position h3 elements */
@@ -101,6 +81,38 @@ h3 {
   padding-top: 3rem;
 }
 
+/* Center the search history buttons in their container */
+#historyUl {
+  margin-right: .5rem;
+  width: 90%;
+}
+
+/* Remove space from top */
+.city {
+  padding-top: 0;
+  font-size: 3rem;
+}
+
+/* Adjust icon size */
+img {
+  width: 50px;
+  margin: 0;
+  padding: 0;
+}
+
+/* Give date the text outline and add space to top */
+.date {
+  padding-top: .5rem;
+  text-shadow: var(--outline);
+}
+
+/* Add class style for the search history pulled from local storage */
+.search-history, #history {
+  color: gray;
+  padding-top: 0rem;
+}
+
+/* Center forecast headers */
 h4 {
   text-align: center;
 }
@@ -115,5 +127,10 @@ h4 {
   /* Center forecast cards */
   .row {
     justify-content: center;
+  }
+
+  /* Fix alignment in mobile view */
+  input, button {
+    margin-left: 1rem;
   }
 }
