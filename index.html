@@ -19,10 +19,12 @@
       <div class="row col-lg-3 col-md-12 col-sm-12 text-start mb-3 mx-3">
         <div class="card" id="search">
           <div class="card-header">
-            <h2>Search for a City:</h2>
+            <h2>Search by City:</h2>
           </div>
-          <input type="text" id="userInput" placeholder="Enter city name">
-          <button id="fetch-button">See Weather</button>
+            <form id="city-search">
+              <input type="text" id="userInput" placeholder="Enter city name" spellcheck="true" autocomplete="city">
+              <button id="fetch-button">See Weather</button>
+            </form>
           <hr />
           <h3 id="history">Search history</h3>
           <ul id="historyUl"></ul>

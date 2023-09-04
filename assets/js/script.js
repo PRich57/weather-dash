@@ -1,6 +1,7 @@
 // Do everything inside jquery function to make sure DOM loads first
 $(function () {
   // VARIABLE DECLARATIONS
+
   // Declare button variable
   var fetchBtn = $("button");
   // Declare city variable
@@ -41,6 +42,16 @@ $(function () {
       // Use json response in next then function
       .then(function (data) {
         console.log(data);
+        // Validation
+        if (data.cod === '404') {
+          city.text(data.message);
+          date.text("Please try your search again");
+          currentTemp.text("");
+          currentWind.text("");
+          currentHumidity.text("");
+          icon.attr('src', './assets/images/unknown.png');
+          return;
+        }
         // Update text node of the city element
         city.text(data.name);
         // Update text node of the date element to desired date format
@@ -55,6 +66,7 @@ $(function () {
         );
         // Set src attribute with data icon code to load in the corresponding png
         icon.attr("src", "./assets/images/" + data.weather[0].icon + ".png");
+        searchHistory();
       });
   }
 
@@ -73,7 +85,7 @@ $(function () {
           cards[i]
             .children()
             .children("h4")
-            .text(today.add(i + 1, "day").format("MMM D, YYYY"));
+            .text(today.add(i + 1, "day").format("MM/DD/YY"));
           // Update the temp for cards[i] in cards array
           // cards[i].children('ul').children().eq(0).text('Temp: ' +  + '°F');
           // Update wind speed for cards[i] in cards array
@@ -137,8 +149,35 @@ $(function () {
 
   // EVENT LISTENERS
 
+  // Listen for keyup event on enter key to do the same as clicking the search button
+  fetchBtn.on("keyup", function (event) {
+    // Prevent default button behavior for form elements
+    event.preventDefault();
+    // Set condition of pressing the enter key (keyCode 13)
+    if (event.keyCode === 13) {
+      // Declare variable to hold user input
+    var userCity = $("input").val();
+    // Validation
+    if (userCity === "") {
+      alert("You must enter a city name");
+      return;
+    }
+
+    // Declare variable for input to getCurrent() with user's chosen city 
+    var userCurrent = currentUrl + userCity + apiKey;
+    // Declare variable for input to getForecast() with user's chosen city
+    var userForecast = forecastUrl + userCity + apiKey;
+
+    // Call functions to get current weather and 5 day forecast
+    getCurrent(userCurrent);
+    getForecast(userForecast);
+    }
+  })
+
   // Listen for click on fetchBtn
   fetchBtn.on("click", function (event) {
+    // Prevent default button behavior for form elements
+    event.preventDefault();
     // Declare variable to hold user input
     var userCity = $("input").val();
     // Validation
@@ -155,9 +194,6 @@ $(function () {
     // Call functions to get current weather and 5 day forecast
     getCurrent(userCurrent);
     getForecast(userForecast);
-    
-    // Call searchHistory() to store the most recent search
-    searchHistory();
   });
 
   // Listen for click on search history buttons
@@ -172,8 +208,6 @@ $(function () {
     // Call the getCurrent and getForecast functions with search history input
     getCurrent(currentSearchHistory);
     getForecast(forecastSearchHistory);
-    
-    searchHistory();
   })
 
   // FUNCTION CALLS FOR FIRST LOAD CONTENT
