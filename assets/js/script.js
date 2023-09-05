@@ -100,15 +100,18 @@ $(function () {
           // Declare variables for sum and average temp, wind speed, and humidity
           var sumT, avgT, sumW, avgW, sumH, avgH, tempMax;
           
-          var iconId;
           // Set all equal to 0
           sumT = avgT = sumW = avgW = sumH = avgH = tempMax = 0;
           
+          // Declare variable to store icon IDs
+          var iconId;
+
           // For each day, get the sum of temps, wind speeds, and humidity from all segments
           days[i].forEach((element) => {
             sumT += element.main.temp;
             sumW += element.wind.speed;
             sumH += element.main.humidity;
+
             // Get high temp from each day
             if (tempMax < element.main.temp_max) {
               tempMax = element.main.temp_max;
