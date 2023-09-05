@@ -2,7 +2,8 @@
 :root {
   --header1: linear-gradient(30deg, rgb(30, 30, 252), rgb(110, 231, 128));
   --header2: linear-gradient(180deg, rgb(5, 5, 123), rgb(3, 85, 168));
-  --outline: -1.3px -1.3px 0 #000, 1.3px -1.3px 0 #000, -1.3px 1.3px 0 #000, 1.3px 1.3px 0 #000;
+  --outline: -1.3px -1.3px 0 #000, 1.3px -1.3px 0 #000, -1.3px 1.3px 0 #000,
+    1.3px 1.3px 0 #000;
 }
 
 /* Universal selector - set box sizing */
@@ -29,7 +30,7 @@ header {
   text-align: center;
   padding: 1.5rem;
   margin-bottom: 1.5rem;
-  border-bottom: .2px solid white;
+  border-bottom: 0.2px solid white;
   text-shadow: var(--outline);
 }
 
@@ -47,7 +48,7 @@ main {
 
 /* Add slight space between forecast cards */
 .card {
-  margin: .1rem;
+  margin: 0.1rem;
 }
 
 /* Remove the the gutter from the forecast cards */
@@ -68,8 +69,9 @@ h2 {
 }
 
 /* Position the input field and button */
-input, button {
-  margin: .5rem;
+input,
+button {
+  margin: 0.5rem;
   margin-left: 1.5rem;
   width: 90%;
   border-radius: 5px;
@@ -103,7 +105,7 @@ h3 {
 
 /* Center the search history buttons in their container */
 #historyUl {
-  margin-right: .5rem;
+  margin-right: 0.5rem;
   width: 90%;
 }
 
@@ -131,20 +133,28 @@ li {
   padding: 0;
 }
 
-.icons {
-  width: 25px;
+.icon-1,
+.icon-2,
+.icon-3,
+.icon-4,
+.icon-5 {
+  width: 50px;
+  position: relative;
+  text-align: center;
   margin: 0;
   padding: 0;
 }
 
 /* Give date the text outline and add space to top */
-.date, .dates {
-  padding-top: .5rem;
+.date,
+.dates {
+  padding-top: 0.5rem;
   text-shadow: var(--outline);
 }
 
 /* Add class style for the search history pulled from local storage */
-.search-history, #history {
+.search-history,
+#history {
   color: gray;
   padding-top: 0rem;
 }
@@ -171,7 +181,8 @@ h4 {
   }
 
   /* Fix alignment in mobile view */
-  input, button {
+  input,
+  button {
     margin-left: 1rem;
   }
 }

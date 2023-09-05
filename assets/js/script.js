@@ -113,8 +113,8 @@ $(function () {
             if (tempMax < element.main.temp_max) {
               tempMax = element.main.temp_max;
             }
-            // Get icon from noon each day
-            if (element.dt_txt.includes("12:00:00")) {
+            // Get icon for each day using the pod object due to time being relative to UTC
+            if (element.sys.pod.includes("d")) {
               iconId = element.weather[0].icon;
               console.log(iconId);
             }
@@ -152,7 +152,7 @@ $(function () {
           .children()
           .eq(3)
           .text("Humidity: " + avgH + "%");
-          
+          cards[i].children(".card-header").children().eq(1).attr("src", "./assets/images/" + iconId + ".png");
         }
           
       });
