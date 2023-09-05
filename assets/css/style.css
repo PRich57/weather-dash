@@ -83,7 +83,7 @@ input {
 
 /* Change button design */
 button {
-  background-color: rgb(92, 137, 242);
+  background-color: rgb(25, 66, 161);
   /* background: var(--header2); */
   color: white;
   font-weight: 500;
@@ -125,14 +125,20 @@ li {
 }
 
 /* Adjust icon size */
-img {
+#icon {
   width: 50px;
   margin: 0;
   padding: 0;
 }
 
+.icons {
+  width: 25px;
+  margin: 0;
+  padding: 0;
+}
+
 /* Give date the text outline and add space to top */
-.date {
+.date, .dates {
   padding-top: .5rem;
   text-shadow: var(--outline);
 }

@@ -14,6 +14,7 @@
     <header>
       <h1>Weather Dashboard</h1>
     </header>
+    <!-- Bootstrap designs for main section -->
     <main>
       <!-- Search section on the left of the screen -->
       <div class="row col-lg-3 col-md-12 col-sm-12 text-start mb-3 mx-3">
@@ -39,7 +40,8 @@
           id="current-weather"
         >
           <div class="card-header">
-            <img src="./assets/images/unknown.png" id="icons" alt="Weather icon">
+            <!-- Create elements to reference with JS -->
+            <img src="./assets/images/unknown.png" id="icon" alt="Weather icon">
             <h2 class="city"></h2>
             <h3 class="date"></h3>
             
@@ -55,50 +57,60 @@
           <div class="row align-items-end text-start">
             <div class="card" style="width: 16rem; height: 16rem" id="1">
               <div class="card-header">
-                <h4 class="date"></h4>
+                <h4 class="dates"></h4>
+                <img src="./assets/images/unknown.png" alt="Weather icon" class="icon-1">
               </div>
               <ul class="list-group list-group-flush">
-                <li class="list-group-item avgT">Temp:</li>
+                <li class="list-group-item avgT">Avg Temp:</li>
+                <li class="list-group-item tempMax">High Temp:</li>
                 <li class="list-group-item avgW">Wind Speed:</li>
                 <li class="list-group-item avgH">Humidity:</li>
               </ul>
             </div>
             <div class="card" style="width: 16rem; height: 16rem" id="2">
               <div class="card-header">
-                <h4 class="date"></h4>
+                <h4 class="dates"></h4>
+                <img src="./assets/images/unknown.png" alt="Weather icon" class="icon-2">
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item avgT">Temp:</li>
+                <li class="list-group-item tempMax">High Temp:</li>
                 <li class="list-group-item avgH">Wind Speed:</li>
                 <li class="list-group-item avgW">Humidity:</li>
               </ul>
             </div>
             <div class="card" style="width: 16rem; height: 16rem" id="3">
               <div class="card-header">
-                <h4 class="date"></h4>
+                <h4 class="dates"></h4>
+                <img src="./assets/images/unknown.png" alt="Weather icon" class="icon-3">
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item avgT">Temp:</li>
+                <li class="list-group-item tempMax">High Temp:</li>
                 <li class="list-group-item avgW">Wind Speed:</li>
                 <li class="list-group-item avgH">Humidity:</li>
               </ul>
             </div>
             <div class="card" style="width: 16rem; height: 16rem" id="4">
               <div class="card-header">
-                <h4 class="date"></h4>
+                <h4 class="dates"></h4>
+                <img src="./assets/images/unknown.png" alt="Weather icon" class="icon-4">
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item avgT">Temp:</li>
+                <li class="list-group-item tempMax">High Temp:</li>
                 <li class="list-group-item avgW">Wind Speed:</li>
                 <li class="list-group-item avgH">Humidity:</li>
               </ul>
             </div>
             <div class="card" style="width: 16rem; height: 16rem" id="5">
               <div class="card-header">
-                <h4 class="date"></h4>
+                <h4 class="dates"></h4>
+                <img src="./assets/images/unknown.png" alt="Weather icon" class="icon-5">
               </div>
               <ul class="list-group list-group-flush">
                 <li class="list-group-item avgT">Temp:</li>
+                <li class="list-group-item tempMax">High Temp:</li>
                 <li class="list-group-item avgW">Wind Speed:</li>
                 <li class="list-group-item avgH">Humidity:</li>
               </ul>

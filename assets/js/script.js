@@ -26,10 +26,12 @@ $(function () {
     "https://api.openweathermap.org/data/2.5/forecast?units=imperial&q=";
   // Declare dayjs variable
   var today = dayjs();
+  // Declare icon variable for current weather icon
+  var icon = $("#icon");
   // Declare array of cards for forecast
   var cards = [$("#1"), $("#2"), $("#3"), $("#4"), $("#5")];
-  // Declare icon variable for weather icons
-  var icon = $("#icons");
+  // Declare icons variable for array for forecast icons
+  var icons = [$(".icon-1"), $("icon-2"), $("icon-3"), $("icon-4"), $("icon-5")];
 
   // FUNCTIONS
 
@@ -55,10 +57,8 @@ $(function () {
         }
         // Update text node of the city element
         city.text(data.name);
-        // Update text node of the date element to desired date format
-        date.text(today.format("[Today] - dddd, MMMM D, YYYY"));
         // Update text node of current temp, rounded for appearance
-        currentTemp.text("Temp: " + Math.round(data.main.temp) + "°F");
+        currentTemp.text("Current Temp: " + Math.round(data.main.temp) + "°F");
         // Update text node of current wind speed, rounded for appearance
         currentWind.text("Wind Speed: " + Math.round(data.wind.speed) + " mph");
         // Update text node of current humidity, rounded for appearance
@@ -79,6 +79,12 @@ $(function () {
       })
       .then(function (data) {
         console.log(data);
+        
+        // Validation
+        if (data.cod === '404') {
+          return;
+        }
+
         // Declare array of divided out days from 5 day 3 hour forecast
         var days = [
           // Each day has 8 3-hour segments
@@ -88,52 +94,83 @@ $(function () {
           data.list.slice(24, 32),
           data.list.slice(32),
         ];
-
+        
         // Iterate through cards
         for (var i = 0; i < cards.length; i++) {
           // Declare variables for sum and average temp, wind speed, and humidity
-          var sumT, avgT, sumW, avgW, sumH, avgH;
+          var sumT, avgT, sumW, avgW, sumH, avgH, tempMax;
+          
+          var iconId;
           // Set all equal to 0
-          sumT = avgT = sumW = avgW = sumH = avgH = 0;
+          sumT = avgT = sumW = avgW = sumH = avgH = tempMax = 0;
           
           // For each day, get the sum of temps, wind speeds, and humidity from all segments
           days[i].forEach((element) => {
             sumT += element.main.temp;
             sumW += element.wind.speed;
             sumH += element.main.humidity;
+            // Get high temp from each day
+            if (tempMax < element.main.temp_max) {
+              tempMax = element.main.temp_max;
+            }
+            // Get icon from noon each day
+            if (element.dt_txt.includes("12:00:00")) {
+              iconId = element.weather[0].icon;
+              console.log(iconId);
+            }
           });
-
+          
+          console.log(tempMax);
+          tempMax = Math.round(tempMax);
+          
           // Use the sums to get each day's average and round them for appearance
           avgT = Math.round(sumT / days[i].length);
           avgW = Math.round(sumW / days[i].length);
           avgH = Math.round(sumH / days[i].length);
-
-          // Update the date for cards[i] with dayjs
-          cards[i]
-            .children()
-            .children("h4")
-            .text(today.add(i + 1, "day").format("MM/DD/YY"));
+          
           // Update the temp for cards[i] in cards array
           cards[i]
-            .children("ul")
-            .children()
-            .eq(0)
-            .text("Temp: " + avgT + "°F");
+          .children("ul")
+          .children()
+          .eq(0)
+          .text("Avg Temp: " + avgT + "°F");
           // Update wind speed for cards[i] in cards array
           cards[i]
-            .children("ul")
-            .children()
-            .eq(1)
-            .text("Wind Speed: " + avgW + " mph");
+          .children("ul")
+          .children()
+          .eq(1)
+          .text("High: " + tempMax + "°F");
+          // Update wind speed for cards[i] in cards array
+          cards[i]
+          .children("ul")
+          .children()
+          .eq(2)
+          .text("Wind Speed: " + avgW + " mph");
           // Update humidity for cards[i] in cards array
           cards[i]
-            .children("ul")
-            .children()
-            .eq(2)
-            .text("Humidity: " + avgH + "%");
+          .children("ul")
+          .children()
+          .eq(3)
+          .text("Humidity: " + avgH + "%");
+          
         }
-
+          
       });
+  }
+
+  // Create function to use dayjs for dates
+  function dateDisplay() {
+    // Update text node of the date element to desired date format
+    date.text(today.format("[Today] - dddd, MMMM D, YYYY"));
+
+    // for each card in cards array
+    for (var i = 0; i < cards.length; i++) {
+      // Update the date for cards[i] with dayjs
+      cards[i]
+        .children()
+        .children("h4")
+        .text(today.add(i + 1, "day").format("MM/DD/YY"));
+    }
   }
 
   // Create function to store search history in local memory
@@ -252,6 +289,7 @@ $(function () {
   });
 
   // FUNCTION CALLS FOR FIRST LOAD CONTENT
+  dateDisplay();
   getCurrent(currentUrl + "Denver" + apiKey);
   getForecast(forecastUrl + "Denver" + apiKey);
   listHistory();
