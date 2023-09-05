@@ -43,14 +43,14 @@ $(function () {
       .then(function (data) {
         console.log(data);
         // Validation
-        if (data.cod === '404') {
+        if (data.cod === "404") {
           city.text(data.message);
           date.text("Please try your search again");
           currentTemp.text("");
           currentWind.text("");
           currentHumidity.text("");
-          icon.attr('src', './assets/images/unknown.png');
-          $('input').val("");
+          icon.attr("src", "./assets/images/unknown.png");
+          $("input").val("");
           return;
         }
         // Update text node of the city element
@@ -77,58 +77,61 @@ $(function () {
       .then(function (response) {
         return response.json();
       })
-      // Use json response in next then function
       .then(function (data) {
-        // Check the result of splitting the dt_txt value
-        console.log(data.list[0].dt_txt.split(' '));
-        console.log(data);
-        // For each element in the list array
-        // data.list.forEach(element => {
-        //   // Declare a variable to split the dt_txt into
-        //   var words = element.dt_txt.split(' ');
-        //   // Check words in console to sift through output
-        //   console.log(words);
+        // Declare array of divided out days from 5 day 3 hour forecast
+        var days = [
+          // Each day has 8 3-hour segments
+          data.list.slice(0, 8),
+          data.list.slice(8, 16),
+          data.list.slice(16, 24),
+          data.list.slice(24, 32),
+          data.list.slice(32),
+        ];
 
-        // Get each full day starting with '00:00:00'
-        var days = [data.list.slice(0, 8), data.list.slice(8, 16), data.list.slice(16, 24), data.list.slice(24, 32), data.list.slice(32)]
-        console.log(days);
-        
-        for (var i = 0; i < 5; i++) {
-          var sumT = 0;
-          var avgT = 0;
-          var sumW = 0;
-          var avgW = 0;
-          var sumH = 0;
-          var avgH = 0;
-          var segments = days[i];
-          segments.forEach(element => {
-            sumT += element.main.temp;
-          });
-          avgT = Math.round(sumT/days[i].length);
-          console.log(avgT);
-        };
-          
-          
-        //   for (var i = 0; i < 5; i++) {
-            
-        //   }
-
-        // });
-        // // var tomorrow = data.list[0]
-        // for each card in the cards array
+        // Iterate through cards
         for (var i = 0; i < cards.length; i++) {
-          // Update the date header for cards[i] in cards array
+          // Declare variables for sum and average temp, wind speed, and humidity
+          var sumT, avgT, sumW, avgW, sumH, avgH;
+          // Set all equal to 0
+          sumT = avgT = sumW = avgW = sumH = avgH = 0;
+          
+          // For each day, get the sum of temps, wind speeds, and humidity from all segments
+          days[i].forEach((element) => {
+            sumT += element.main.temp;
+            sumW += element.wind.speed;
+            sumH += element.main.humidity;
+          });
+
+          // Use the sums to get each day's average and round them for appearance
+          avgT = Math.round(sumT / days[i].length);
+          avgW = Math.round(sumW / days[i].length);
+          avgH = Math.round(sumH / days[i].length);
+
+          // Update the date for cards[i] with dayjs
           cards[i]
             .children()
             .children("h4")
             .text(today.add(i + 1, "day").format("MM/DD/YY"));
           // Update the temp for cards[i] in cards array
-          // cards[i].children('ul').children().eq(0).text('Temp: ' +  + '°F');
+          cards[i]
+            .children("ul")
+            .children()
+            .eq(0)
+            .text("Temp: " + avgT + "°F");
           // Update wind speed for cards[i] in cards array
-          // cards[i].children('ul').children.eq(1).text('Wind Speed: ' +  + ' mph');
+          cards[i]
+            .children("ul")
+            .children()
+            .eq(1)
+            .text("Wind Speed: " + avgW + " mph");
           // Update humidity for cards[i] in cards array
-          // cards[i].children('ul').children.eq(2).text('Humidity: ' +  + '%');
-        } // May need to average out the daily temp, wind speed, humidity
+          cards[i]
+            .children("ul")
+            .children()
+            .eq(2)
+            .text("Humidity: " + avgH + "%");
+        }
+
       });
   }
 
@@ -152,7 +155,7 @@ $(function () {
     localStorage.setItem("searchHistory", JSON.stringify(storedHistory));
 
     // Clear the input field
-    $('input').val("");
+    $("input").val("");
 
     // Clear displayed search history to prevent doubling
     historyUl.empty();
@@ -162,23 +165,24 @@ $(function () {
   }
 
   // Create function to list the search history for the user to see and use
-  function listHistory() {    
+  function listHistory() {
     // Get items from local storage
-    var completeHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
+    var completeHistory =
+      JSON.parse(localStorage.getItem("searchHistory")) || [];
 
     // Use slice method first to store shallow copy of original array then reverse the copy
     var reversedHistory = completeHistory.slice().reverse();
 
     // Limit the reversed array copy to the 8 most recent elements
     var listHistory = reversedHistory.slice(0, 8);
-    
+
     // Create buttons for each stored item starting from most recent entry
     for (var i = 0; i < listHistory.length; i++) {
-      var historyLi = $('<li>');
+      var historyLi = $("<li>");
       historyUl.append(historyLi);
-      var historyBtn = $('<button>');
+      var historyBtn = $("<button>");
       historyBtn.text(listHistory[i]);
-      historyBtn.attr('class', 'historyBtn');
+      historyBtn.attr("class", "historyBtn");
       historyLi.append(historyBtn);
     }
   }
@@ -192,23 +196,23 @@ $(function () {
     // Set condition of pressing the enter key (keyCode 13)
     if (event.keyCode === 13) {
       // Declare variable to hold user input
-    var userCity = $("input").val();
-    // Validation
-    if (userCity === "") {
-      alert("You must enter a city name");
-      return;
-    }
+      var userCity = $("input").val();
+      // Validation
+      if (userCity === "") {
+        alert("You must enter a city name");
+        return;
+      }
 
-    // Declare variable for input to getCurrent() with user's chosen city 
-    var userCurrent = currentUrl + userCity + apiKey;
-    // Declare variable for input to getForecast() with user's chosen city
-    var userForecast = forecastUrl + userCity + apiKey;
+      // Declare variable for input to getCurrent() with user's chosen city
+      var userCurrent = currentUrl + userCity + apiKey;
+      // Declare variable for input to getForecast() with user's chosen city
+      var userForecast = forecastUrl + userCity + apiKey;
 
-    // Call functions to get current weather and 5 day forecast
-    getCurrent(userCurrent);
-    getForecast(userForecast);
+      // Call functions to get current weather and 5 day forecast
+      getCurrent(userCurrent);
+      getForecast(userForecast);
     }
-  })
+  });
 
   // Listen for click on fetchBtn
   fetchBtn.on("click", function (event) {
@@ -222,7 +226,7 @@ $(function () {
       return;
     }
 
-    // Declare variable for input to getCurrent() with user's chosen city 
+    // Declare variable for input to getCurrent() with user's chosen city
     var userCurrent = currentUrl + userCity + apiKey;
     // Declare variable for input to getForecast() with user's chosen city
     var userForecast = forecastUrl + userCity + apiKey;
@@ -233,7 +237,7 @@ $(function () {
   });
 
   // Listen for click on search history buttons
-  historyUl.on('click', function (event) {
+  historyUl.on("click", function (event) {
     // Declare variable to store the text content of the button clicked
     var searchAgain = event.target.textContent;
     // Declare variable for search history input to getCurrent function
@@ -244,7 +248,7 @@ $(function () {
     // Call the getCurrent and getForecast functions with search history input
     getCurrent(currentSearchHistory);
     getForecast(forecastSearchHistory);
-  })
+  });
 
   // FUNCTION CALLS FOR FIRST LOAD CONTENT
   getCurrent(currentUrl + "Denver" + apiKey);

@@ -72,6 +72,11 @@ input, button {
   margin-left: 1.5rem;
   width: 90%;
   border-radius: 5px;
+  font-size: 1.2rem;
+}
+
+input {
+  padding-left: 1rem;
 }
 
 /* Make hr visible */
@@ -89,6 +94,16 @@ h3 {
 #historyUl {
   margin-right: .5rem;
   width: 90%;
+}
+
+.historyBtn {
+  font-size: 1rem;
+}
+
+/* Change li font-size */
+li {
+  font-size: 1.2rem;
+  font-weight: 500;
 }
 
 /* Remove space from top */
