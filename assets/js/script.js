@@ -78,6 +78,7 @@ $(function () {
         return response.json();
       })
       .then(function (data) {
+        console.log(data);
         // Declare array of divided out days from 5 day 3 hour forecast
         var days = [
           // Each day has 8 3-hour segments

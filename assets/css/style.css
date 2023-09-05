@@ -33,6 +33,7 @@ header {
   text-shadow: var(--outline);
 }
 
+/* Increase h1 size */
 h1 {
   font-size: 3.5rem;
 }
@@ -75,8 +76,18 @@ input, button {
   font-size: 1.2rem;
 }
 
+/* Add padding to left side of input field */
 input {
   padding-left: 1rem;
+}
+
+/* Change button design */
+button {
+  background-color: rgb(92, 137, 242);
+  /* background: var(--header2); */
+  color: white;
+  font-weight: 500;
+  text-shadow: var(--outline);
 }
 
 /* Make hr visible */
@@ -96,11 +107,12 @@ h3 {
   width: 90%;
 }
 
+/* Keep search history font at 1rem */
 .historyBtn {
   font-size: 1rem;
 }
 
-/* Change li font-size */
+/* Change forecast card li font-size */
 li {
   font-size: 1.2rem;
   font-weight: 500;
