@@ -189,7 +189,9 @@ $(function () {
     // Get existing history from local storage
     var storedHistory = JSON.parse(localStorage.getItem("searchHistory")) || [];
     // Add new search to the existing search history
-    storedHistory.push(searchItem);
+    storedHistory.unshift(searchItem);
+    // Remove duplicates
+    storedHistory = [...new Set(storedHistory)];
     // Save the updated searchHistory back to local storage
     localStorage.setItem("searchHistory", JSON.stringify(storedHistory));
 
@@ -210,7 +212,7 @@ $(function () {
       JSON.parse(localStorage.getItem("searchHistory")) || [];
 
     // Use slice method first to store shallow copy of original array then reverse the copy
-    var reversedHistory = completeHistory.slice().reverse();
+    var reversedHistory = completeHistory.slice();
 
     // Limit the reversed array copy to the 8 most recent elements
     var listHistory = reversedHistory.slice(0, 10);
