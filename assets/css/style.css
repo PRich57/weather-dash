@@ -46,14 +46,14 @@ main {
   font-size: 1rem;
 }
 
-/* Add slight space between forecast cards */
-.card {
-  margin: 0.1rem;
-}
-
 /* Remove the the gutter from the forecast cards */
 .row {
   --bs-gutter-x: 0;
+}
+
+/* Add slight space between forecast cards */
+.card {
+  margin: 0.1rem;
 }
 
 /* Add card header variable color */
@@ -72,7 +72,7 @@ h2 {
 input,
 button {
   margin: 0.5rem;
-  margin-left: 1.5rem;
+  /* margin-left: 1.5rem; */
   width: 90%;
   border-radius: 5px;
   font-size: 1.2rem;
@@ -86,7 +86,6 @@ input {
 /* Change button design */
 button {
   background-color: rgb(25, 66, 161);
-  /* background: var(--header2); */
   color: white;
   font-weight: 500;
   text-shadow: var(--outline);
@@ -100,7 +99,7 @@ hr {
 /* Position h3 elements */
 h3 {
   text-align: center;
-  padding-top: 3rem;
+  padding-top: 2.6rem;
 }
 
 /* Center the search history buttons in their container */
@@ -109,15 +108,15 @@ h3 {
   width: 90%;
 }
 
-/* Keep search history font at 1rem */
-.historyBtn {
-  font-size: 1rem;
-}
-
 /* Change forecast card li font-size */
 li {
   font-size: 1.2rem;
   font-weight: 500;
+}
+
+/* Keep search history font at 1rem */
+.historyBtn {
+  font-size: 1rem;
 }
 
 /* Remove space from top */
@@ -127,20 +126,8 @@ li {
 }
 
 /* Adjust icon size */
-#icon {
+.icon {
   width: 50px;
-  margin: 0;
-  padding: 0;
-}
-
-.icon-1,
-.icon-2,
-.icon-3,
-.icon-4,
-.icon-5 {
-  width: 50px;
-  position: relative;
-  text-align: center;
   margin: 0;
   padding: 0;
 }
@@ -164,12 +151,20 @@ h4 {
   text-align: center;
 }
 
+/* Add media query to fix size of search box */
+@media screen and (max-width: 1600px) {
+  #search {
+    max-width: 96%;
+  }
+}
+
 /* Add media queries for mobile responsiveness due to minor tweaks to bootstrap */
-@media screen and (max-width: 1000px) {
+@media screen and (max-width: 990px) {
   /* Shrink the h1 font on a smaller screen */
   h1 {
     font-size: 3rem;
   }
+
   /* Switch main to column  */
   main {
     flex-direction: column;
@@ -184,5 +179,12 @@ h4 {
   input,
   button {
     margin-left: 1rem;
+  }
+}
+
+/* Add media query to fix size of search box */
+@media screen and (max-width: 576px) {
+  #search {
+    max-width: 100%;
   }
 }

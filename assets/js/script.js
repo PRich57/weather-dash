@@ -30,8 +30,6 @@ $(function () {
   var icon = $("#icon");
   // Declare array of cards for forecast
   var cards = [$("#1"), $("#2"), $("#3"), $("#4"), $("#5")];
-  // Declare icons variable for array for forecast icons
-  var icons = [$(".icon-1"), $("icon-2"), $("icon-3"), $("icon-4"), $("icon-5")];
 
   // FUNCTIONS
 
@@ -155,7 +153,7 @@ $(function () {
           .children()
           .eq(3)
           .text("Humidity: " + avgH + "%");
-          cards[i].children(".card-header").children().eq(1).attr("src", "./assets/images/" + iconId + ".png");
+          cards[i].children(".card-header").children().eq(0).attr("src", "./assets/images/" + iconId + ".png");
         }
           
       });
@@ -215,7 +213,7 @@ $(function () {
     var reversedHistory = completeHistory.slice().reverse();
 
     // Limit the reversed array copy to the 8 most recent elements
-    var listHistory = reversedHistory.slice(0, 8);
+    var listHistory = reversedHistory.slice(0, 10);
 
     // Create buttons for each stored item starting from most recent entry
     for (var i = 0; i < listHistory.length; i++) {
