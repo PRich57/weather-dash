@@ -4,6 +4,9 @@
 
 The purpose of this Weather Dashboard is to provide the user with a free and easy-to-use weather application. The app will display the current weather and a 5-day forecast of any city the user would like to view. This web application was designed to maximize viewing comfort on both mobile and desktop browsers.
 
+View the 5 day forecast in any city, complete with average daily temperatures, high temperatures, wind speeds, and humidity.
+The easily-accessible search history list allows users to get updates on weather in cities they've recently viewed without the need of manually searching again.
+
 To visit the Weather Dashboard click [here!](https://prich57.github.io/weather-dashboard/)
 
 ## Installation
@@ -20,7 +23,7 @@ For each city searched by the user, the Search History field will update with th
 
 The following image shows the Weather Dashboard's appearance and functionality.
 
-![Screenshot of Weather Dashboard](./assets/images/unknown.png)
+![Screenshot of Weather Dashboard](./assets/images/weather-dashboard-screenshot.png)
 
 ## Credits
 
