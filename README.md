@@ -2,7 +2,7 @@
 
 ## Description
 
-Weather Dash aims to provide the user with a free and easy-to-use weather application. The app will display the current weather and a 5-day forecast of any city the user would like to view. This web application was designed to maximize viewing comfort on mobile and desktop browsers.
+Weather Dash aims to provide users with a free and easy-to-use weather application. The app will display the current weather and a 5-day forecast of any city the user would like to view. This web application was designed to maximize viewing comfort on mobile and desktop browsers.
 
 View the 5-day forecast in any city, complete with average daily temperatures, high temperatures, wind speeds, and humidity.
 The easily accessible search history list allows users to get updates on the weather in cities they've recently viewed without the need to search again.
